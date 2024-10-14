@@ -9,6 +9,7 @@ import { CartContext } from "./CartContext";
 
 
 const Bg = styled.div`
+    min-width: 100%;
     background-color: #222;
     color: #fff;
     padding: 50px 0;
@@ -16,8 +17,11 @@ const Bg = styled.div`
 const Title = styled.h1`
     margin: 0;
     font-weight: normal;
-    font-size: 3rem;
+    font-size: 1.5rem;
     color: white;
+    @media screen and (min-width: 550px){
+        font-size: 3rem;
+    }
 `
 const Desc = styled.p`
     color: #aaa;
@@ -25,11 +29,24 @@ const Desc = styled.p`
 `
 const ColumnsWrapper = styled.div`
     display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
+    grid-template-columns: 1fr;
     height: fit-content;
     gap: 40px;
     img{
+        max-width: 100%;
+        max-height: 200px;
+        display: block;
+        margin: 0 auto;
         border-radius: 1rem;
+    }
+    div:nth-child(1){
+            order:2;
+    }
+    @media screen and (min-width: 550px) {
+        grid-template-columns: 0.9fr 1.1fr;
+        div:nth-child(1){
+            order:0;
+        }
     }
 `
 const Column = styled.div`
@@ -82,12 +99,11 @@ export default function Featured ({product}) {
                             </ButtonsWrapper>
                         </div>
                     </Column>
-                    <Column style={{position:"relative"}}>
-                        <Image 
-                            src={"https://plus.unsplash.com/premium_photo-1681666713728-9ed75e148617?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFjYm9va3xlbnwwfHwwfHx8MA%3D%3D"} 
+                    <Column>
+                        <Image
+                            src={product?.images?.[0]} 
                             width={250}
                             height={200}
-
                         />
                     </Column>
                 </ColumnsWrapper>

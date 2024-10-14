@@ -36,14 +36,21 @@ const ProductInfoBox = styled.div`
     margin-top: 2px;
 `
 const PriceRow = styled.div`
-    display: flex;
+    display: block;
     justify-content: space-between;
     align-items: center;
     margin-top: 3px;
+    @media screen and (min-width: 550px) {
+        display: flex;
+        gap: 10px
+    }
 `
 const Price = styled.div`
-    font-size: 1.4rem;
+    font-size: 1rem;
     font-weight: 600;
+    @media screen and (min-width: 550px){
+        font-size:1.4rem;
+    }
 `
 
 export default function ProductBox({_id, title, description, price, images}) {
@@ -72,7 +79,8 @@ export default function ProductBox({_id, title, description, price, images}) {
                     <Price>${price}</Price>
                     <Button
                         onClick={()=>addProductToCart(_id)}
-                        primary 
+                        primary
+                        block
                         outline
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">

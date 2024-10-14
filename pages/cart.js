@@ -11,10 +11,12 @@ import Input from "@/components/input";
 
 const ColumnsWrapper = styled.div`
     display: grid;
-    grid-template-columns: 1.8fr 1.2fr;
+    grid-template-columns: 1fr;
     gap:30px;
     margin-top: 30px;
-
+    @media screen and (min-width: 768px) {
+        grid-template-columns: 1.8fr 1.2fr;
+    }
 `
 const Box = styled.div`
     background-color: #fff;
@@ -90,6 +92,7 @@ export default function CartPage() {
         width: 130px;
         height: 100px;
         border: 1px solid rgba(0,0,0,0.1);
+        /* padding: 2px; */
         border-radius: 10px;
         display: flex;
         justify-content: center;
@@ -97,9 +100,17 @@ export default function CartPage() {
         margin-right: auto;
         align-items: center;
         img{
-            max-width: 140px;
-            max-height:100px;
+            max-width: 100%;
+            max-height:100%;
             border-radius: 10px;
+        }
+        @media screen and (min-width: 550px){
+            /* padding: 10px; */
+            img{
+                max-width: 100%;
+                max-height:1005;
+                border-radius: 10px;
+            }
         }
     `
     const CityHolder = styled.div`
@@ -111,9 +122,9 @@ export default function CartPage() {
     `
     const QuantityLabel = styled.span`
         padding: 0 15px;
-        display: block;
-        @media screen and (min-width: 768px) {
-            display: inline-block;
+        /* display: block; */
+        @media screen and (max-width: 550px) {
+            display: block;
             padding: 0 10px;
         }
     `

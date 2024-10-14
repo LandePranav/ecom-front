@@ -61,8 +61,12 @@ export const ButtonStyle = css`
 
 const StyledButton = styled.button`
     ${ButtonStyle}
+    @media screen and (min-width: 550px){
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 `
-
 export default function Button({children, ...rest}) {
     return(
         <StyledButton {...rest}>
