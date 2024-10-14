@@ -34,6 +34,7 @@ export default function CartPage() {
     const [products, setProducts] = useState([]);
     const set = new Set();
     const [count, setCounts] = useState({});
+    const [isSuccess, setIsSuccess] = useState(false);
 
     function processList(cartProducts){
         const counts = {}
@@ -43,6 +44,25 @@ export default function CartPage() {
             set.add(id);
         });
         return counts;
+    }
+
+    useEffect(()=>{
+        if(typeof window === 'undefined'){
+            return ;
+        }
+
+        if(window.location.href.includes('success')){
+            clearCart();
+            setIsSuccess(true);
+        }else{
+            setIsSuccess(false);
+        }
+    },[]);
+
+    async function clearCart(){
+        setCartProducts([]);
+        setProducts([]);
+        localStorage.setItem('cartProducts', []);
     }
 
     useEffect(()=>{
@@ -123,6 +143,35 @@ export default function CartPage() {
         total += product.price * count[product._id] ;
     }
 
+    async function goToPayment(){
+        const res = await axios.post('/api/checkout', {
+            name,email,city,postal,addr,country,
+            products:JSON.stringify(products),
+            count:JSON.stringify(count)
+        } );
+        if(res?.data?.url){
+            window.location = res.data.url ;
+        }
+    }
+
+    if(isSuccess){
+        return(
+            <>
+                <Header />
+                <Center>
+                    <ColumnsWrapper>
+                    <Box>
+                        <h1>
+                            Your payment is Successful. <br/>
+                            Thanks for Order.
+                        </h1>
+                    </Box>
+                    </ColumnsWrapper>
+                </Center>
+            </>
+        );
+    }
+
     return(
         <div>
             <Header />
@@ -178,7 +227,6 @@ export default function CartPage() {
                         {!!cartProducts.length && (
                             <Box>
                                 <StyledHeader>Order Information</StyledHeader>
-                                <form method="post" action="/api/checkout">
                                 <Input type="text" name="name" placeholder="Name" value={name || ''} onChange={e=>setName(e.target.value)} />
                                 <Input type="text" name="email" placeholder="Email" value={email || ''} onChange={e=>setEmail(e.target.value)} />
                             <CityHolder>
@@ -187,9 +235,7 @@ export default function CartPage() {
                             </CityHolder>
                                 <Input type="text" name="addr" placeholder="Street Addr." value={addr || ''} onChange={e=>setAddr(e.target.value)} />
                                 <Input type="text" name="country" placeholder="Country" value={country || ''} onChange={e=>setCountry(e.target.value)} />
-                                <input type="hidden" name="products" value={cartProducts.join(',')} />
-                                <Button black block types="submit">Continue to Payment</Button>
-                                </form>
+                                <Button onClick={goToPayment} black block types="submit">Continue to Payment</Button>
                             </Box>
                              )}
                 </ColumnsWrapper>
