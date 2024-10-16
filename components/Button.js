@@ -18,8 +18,10 @@ export const ButtonStyle = css`
     ${props => props.block && css`
         display: block;
         width: 100%;
-        padding-top: 8px;
-        padding-bottom: 8px;
+        padding: 3px 0;
+        @media screen and (min-width: 426 ) {
+            padding : 8px 0;
+        }
     `}
     ${props => props.white && !props.outline && css`
         background-color: white;
@@ -61,7 +63,7 @@ export const ButtonStyle = css`
 
 const StyledButton = styled.button`
     ${ButtonStyle}
-    @media screen and (min-width: 550px){
+    @media screen and (min-width: 660px){
         display: flex;
         justify-content: center;
         align-items: center;

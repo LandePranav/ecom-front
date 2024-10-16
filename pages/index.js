@@ -7,7 +7,7 @@ import NewProduct from "@/components/NewProduct";
 
 export default function Home({featuredProduct,newProducts}) {
   return (
-    <div>
+    <div style={{paddingBottom:"20px"}}>
       <Head>
       @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700&display=swap');      
       </Head>
