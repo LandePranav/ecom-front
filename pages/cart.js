@@ -1,7 +1,7 @@
 import { CartContext } from "@/components/CartContext";
 import Center from "@/components/Center";
 import Header from "@/components/Header";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import Button from "@/components/Button";
 import axios from "axios";
@@ -34,7 +34,7 @@ export default function CartPage() {
     const [addr, setAddr] = useState('');
     const [country,setCountry] = useState('');
     const [products, setProducts] = useState([]);
-    const set = new Set();
+    const set = useMemo(()=> new Set(), [cartProducts])
     const [count, setCounts] = useState({});
     const [isSuccess, setIsSuccess] = useState(false);
 

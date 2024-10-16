@@ -1,6 +1,5 @@
 import Featured from "@/components/Featured";
 import Header from "@/components/Header";
-import Head from "next/head";
 import { Product } from "@/models/Product";
 import MongooseConnect from "@/lib/mongoose";
 import NewProduct from "@/components/NewProduct";
@@ -8,9 +7,6 @@ import NewProduct from "@/components/NewProduct";
 export default function Home({featuredProduct,newProducts}) {
   return (
     <div style={{paddingBottom:"20px"}}>
-      <Head>
-      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700&display=swap");      
-      </Head>
       <Header />
       <Featured product={featuredProduct} />
       <NewProduct products={newProducts} />
