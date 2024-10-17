@@ -1,6 +1,7 @@
 import CartContextProvider from "@/components/CartContext";
 import styled, { createGlobalStyle } from "styled-components"
 import {Poppins} from 'next/font/google';
+import {SessionProvider} from "next-auth/react"
 
 const poppins = Poppins({
   weights: [300,400,500,600,700],
@@ -18,13 +19,15 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps: {session, ...pageProps}, }) {
   return (
-    <div className={poppins.className}>
-      <GlobalStyles />
-    <CartContextProvider>
-      <Component {...pageProps} />
-    </CartContextProvider>
-    </div>
+    <SessionProvider session={session}>
+        <div className={poppins.className}>
+        <GlobalStyles />
+      <CartContextProvider>
+        <Component {...pageProps} />
+      </CartContextProvider>
+      </div>
+    </SessionProvider>
   )
 }

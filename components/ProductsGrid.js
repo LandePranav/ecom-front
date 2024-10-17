@@ -4,13 +4,15 @@ const StyledProductGrid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
-    padding-top: 30px;
+    padding-top: 10px;
 
     @media screen and (min-width: 426px) {
         grid-template-columns: 1fr 1fr 1fr;
+        padding-top: 30px;
     }
     @media screen and (min-width: 769px) {
         grid-template-columns: 1fr 1fr 1fr 1fr;
+        padding-top: 30px;
     }
 `
 export default function ProductsGrid({products}) {

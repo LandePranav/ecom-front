@@ -11,7 +11,7 @@ const Title = styled.h1`
 
 export default function ProductsPage({products}) {
     return(
-        <>
+        <div style={{paddingBottom:'20px'}}>
             <Header />
             <Center>
                 <Title>
@@ -19,7 +19,7 @@ export default function ProductsPage({products}) {
                 </Title>
                 <ProductsGrid products={products} />
             </Center>
-        </>
+        </div>
     )
 }
 

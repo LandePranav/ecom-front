@@ -246,7 +246,7 @@ export default function CartPage() {
                             </CityHolder>
                                 <Input type="text" name="addr" placeholder="Street Addr." value={addr || ''} onChange={e=>setAddr(e.target.value)} />
                                 <Input type="text" name="country" placeholder="Country" value={country || ''} onChange={e=>setCountry(e.target.value)} />
-                                <Button onClick={goToPayment} black block types="submit">Continue to Payment</Button>
+                                <Button onClick={goToPayment} $black $block types="submit">Continue to Payment</Button>
                             </Box>
                              )}
                 </ColumnsWrapper>

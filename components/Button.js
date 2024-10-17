@@ -18,7 +18,7 @@ export const ButtonStyle = css`
     ${props => props.$block && css`
         display: block;
         width: 100%;
-        padding: 3px 0;
+        padding: 8px 0;
         @media screen and (min-width: 426 ) {
             padding : 8px 0;
         }

@@ -28,6 +28,7 @@ const Title = styled.h1`
 const Desc = styled.p`
     color: #aaa;
     font-size: .9rem;
+    text-align: justify;
 `
 const ColumnsWrapper = styled.div`
     display: grid;
@@ -69,9 +70,14 @@ const ButtonsWrapper = styled.div`
     gap: 10px;
     margin-top: 15px;
 `
+const StyledImage = styled(Image)`
+    object-fit: cover;
+    border: .05rem solid gray;
+`
 
 export default function Featured ({product}) {
     const {cartProducts, setCartProducts} = useContext(CartContext);
+    const turncatedText = product.description.split(' ').slice(0, 17).join(' ') + (product.description.split(' ').length > 30 ? " . . ." : "")
 
     function addFeaturedToCart(product){
         setCartProducts(prev => {
@@ -87,11 +93,11 @@ export default function Featured ({product}) {
                     <Column>
                         <div>
                             <Title>{product.title}</Title>
-                            <Desc>{product.description}.</Desc>
+                            <Desc>{turncatedText}</Desc>
                             <ButtonsWrapper>
                                 <ButtonLink
-                                    href={'/products/'+product._id} 
-                                    outline={1} 
+                                    href={'/product/'+product._id} 
+                                    outline={1}
                                     $white={1}
                                 >
                                     Read more
@@ -109,7 +115,7 @@ export default function Featured ({product}) {
                         </div>
                     </Column>
                     <Column>
-                            <Image
+                            <StyledImage
                                 src={product?.images?.[0]} 
                                 width={250}
                                 height={200}
