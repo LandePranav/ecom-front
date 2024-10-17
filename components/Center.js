@@ -7,6 +7,7 @@ const StyledDiv = styled.div`
 
     @media screen and (min-width: 769px) {
         max-width: 70%;
+        margin: 0 auto;
     }
 `
 

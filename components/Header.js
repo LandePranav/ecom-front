@@ -31,7 +31,7 @@ const Wrapper = styled.div`
     }
 `
 const StyleNav = styled.nav`
-    ${props => props.mobileNavActive ? `display: block;`: `display: none;`}
+    ${({$mobilenavactive}) => ($mobilenavactive ? `display: block;`: `display: none;`)}
     gap: 15px;
     position: fixed;
     top:0;
@@ -97,6 +97,9 @@ const MobNavRapper = styled.div`
     display: flex;
     align-items: center;
     gap: 5px;
+    @media screen and (min-width: 550px) {
+        display: none;
+    }
 `
 
 export default function Header() {
@@ -108,10 +111,10 @@ export default function Header() {
             <Center>
                 <Wrapper>
                     <Logo href={'/'}>Ecommerce</Logo>
-                    <StyleNav mobileNavActive={mobileNavActive}>
+                    <StyleNav $mobilenavactive={mobileNavActive}>
                         <NavLink href={'/'}>Home</NavLink>
                         <NavLink href={'/products'}>All Products</NavLink>
-                        <NavLink href={'/categories'}>Categories</NavLink>
+                        {/* <NavLink href={'/#'}>Categories</NavLink> */}
                         <NavLink href={'/account'}>Account</NavLink>
                         <NavLink href={'/cart'}>Cart ({cartProducts.length})</NavLink>
                     </StyleNav>
