@@ -191,7 +191,9 @@ export default function Account() {
 
     return(
         <div>
-            <Header/>
+            <div style={{position:"relative",zIndex:"10"}}>
+                    <Header/>
+                </div>
                 <StyledTemp>
                     <div>
                         <StyledHeader>USER SIGN-IN</StyledHeader>
@@ -199,15 +201,13 @@ export default function Account() {
                             Google
                         </StyledButton>
                     </div>
-                    
+
                     <div>
                         <StyledHeader>ADMIN SIGN-IN</StyledHeader>
                         <StyledButton onClick={()=>window.location.href = 'https://zenith-ecomadmin.vercel.app/'}>
                             Admin Page
                         </StyledButton>
                     </div>
-                    
-                    
                 </StyledTemp>
         </div>
     )

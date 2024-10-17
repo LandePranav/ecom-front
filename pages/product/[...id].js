@@ -24,7 +24,7 @@ const ColWrapper = styled.div`
     margin: 30px 0;
     max-width: 100%;
     @media screen and (min-width: 550px) {
-        grid-template-columns: .8fr 1.2fr ;
+        grid-template-columns: .9fr 1.1fr ;
         margin: 40px 0;
         gap: 40px;
     }
