@@ -168,8 +168,8 @@ export default function Account() {
 
                             {orderList.length > 0 ? (orderList.map( (order,index) => {
                                 const orderSubArr = [...order] ;
-                                return orderSubArr.map((o) => (
-                                    <StyledOrderLog>
+                                return orderSubArr.map((o,index1) => (
+                                    <StyledOrderLog key={index.toString() + index1.toString()}>
                                         <div style={{width:"100%",}}>
                                             ${o.quantity * o.price_data.unit_amount/100}
                                         </div>
