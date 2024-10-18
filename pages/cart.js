@@ -113,19 +113,29 @@ export default function CartPage() {
             }
         }
     `
-    const CityHolder = styled.div`
-        display: flex ;
-        gap: 5px;
-    `
     const StyledHeader = styled.h2`
         text-align: center;
     `
     const QuantityLabel = styled.span`
         padding: 0 15px;
-        /* display: block; */
-        @media screen and (max-width: 550px) {
-            display: block;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        p{
+            margin: 0;
+        }
+        flex-flow: column-reverse;
+
+        @media screen and (min-width: 550px) {
+            display: flex;
             padding: 0 10px;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+            p{
+                padding: 0 5px;
+            }
         }
     `
 
@@ -212,11 +222,15 @@ export default function CartPage() {
                                                             {product.title}
                                                         </ProductInfoCell>
                                                         <td>
-                                                            <Button onClick={()=>subOne(product._id)}>-</Button>
+                                                            
                                                             <QuantityLabel>
+                                                            <Button onClick={()=>subOne(product._id)}>-</Button>
+                                                            <p>
                                                                 {count[product._id] || 0}
-                                                            </QuantityLabel>
+                                                            </p>
                                                             <Button onClick={()=>addOne(product._id)}>+</Button>
+                                                            </QuantityLabel>
+                                                            
                                                         </td>
                                                         <td>${product.price * count[product._id]}</td>
                                                     </tr>
@@ -224,7 +238,7 @@ export default function CartPage() {
                                             )}
                                             <tr>
                                                 <td></td>
-                                                <td></td>
+                                                <td style={{fontFamily:"monospace", fontSize:"1rem", color:"gray"}}>TOTAL</td>
                                                 <td style={{paddingTop:"5px"}}>${total}</td>
                                             </tr>
 
@@ -240,10 +254,10 @@ export default function CartPage() {
                                 <StyledHeader>Order Information</StyledHeader>
                                 <Input type="text" name="name" placeholder="Name" value={name || ''} onChange={e=>setName(e.target.value)} />
                                 <Input type="text" name="email" placeholder="Email" value={email || ''} onChange={e=>setEmail(e.target.value)} />
-                            <CityHolder>
+                            <div style={{display:"flex", gap:"5px"}}>
                                 <Input type="text" name="city" placeholder="City" value={city || ''} onChange={e=>setCity(e.target.value)} />
                                 <Input type="text" name="postal" placeholder="Postal-Code" value={postal || ''} onChange={e=>setPostal(e.target.value)} />
-                            </CityHolder>
+                            </div>
                                 <Input type="text" name="addr" placeholder="Street Addr." value={addr || ''} onChange={e=>setAddr(e.target.value)} />
                                 <Input type="text" name="country" placeholder="Country" value={country || ''} onChange={e=>setCountry(e.target.value)} />
                                 <Button onClick={goToPayment} $black $block types="submit">Continue to Payment</Button>

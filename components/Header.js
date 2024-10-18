@@ -112,11 +112,11 @@ export default function Header() {
                 <Wrapper>
                     <Logo href={'/'}>Ecommerce</Logo>
                     <StyleNav $mobilenavactive={mobileNavActive}>
-                        <NavLink href={'/'}>Home</NavLink>
-                        <NavLink href={'/products'}>All Products</NavLink>
+                        <NavLink href={'/'} onClick={()=> (window.location.pathname === "/" && setMobileNavActive(prev => !prev))} >Home</NavLink>
+                        <NavLink href={'/products'} onClick={()=> (window.location.pathname === "/products" && setMobileNavActive(prev => !prev))}>All Products</NavLink>
                         {/* <NavLink href={'/#'}>Categories</NavLink> */}
-                        <NavLink href={'/account'}>Account</NavLink>
-                        <NavLink href={'/cart'}>Cart ({cartProducts.length})</NavLink>
+                        <NavLink href={'/account'} onClick={()=> (window.location.pathname === "/account" && setMobileNavActive(prev => !prev))} >Account</NavLink>
+                        <NavLink href={'/cart'} onClick={()=> (window.location.pathname === "/cart" && setMobileNavActive(prev => !prev))}>Cart ({cartProducts.length})</NavLink>
                     </StyleNav>
                         <MobNavRapper>
                         <CartLink href={'/cart'}>

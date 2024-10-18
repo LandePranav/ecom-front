@@ -6,8 +6,9 @@ export const ButtonStyle = css`
     border: 0;
     padding: 5px 15px;
     cursor: pointer;
-    display: inline-flex;
+    display: flex;
     align-items: center;
+    justify-content: center;
     text-decoration: none;
     font-weight: 500;
     font-family: 'Poppins', sans-serif;
@@ -16,7 +17,8 @@ export const ButtonStyle = css`
         margin-right: 5px;
     }
     ${props => props.$block && css`
-        display: block;
+        display: flex;
+        align-items: center;
         width: 100%;
         padding: 8px 0;
         @media screen and (min-width: 426 ) {
