@@ -171,7 +171,7 @@ export default function Account() {
                                 return orderSubArr.map((o,index1) => (
                                     <StyledOrderLog key={index.toString() + index1.toString()}>
                                         <div style={{width:"100%",}}>
-                                            ${o.quantity * o.price_data.unit_amount/100}
+                                            ${o.price_data.unit_amount/100}
                                         </div>
                                         <div style={{width:"100%"}}>
                                             {o.quantity} x &nbsp;
