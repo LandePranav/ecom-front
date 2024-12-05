@@ -15,17 +15,34 @@ export default function Home({featuredProduct,newProducts}) {
   )
 }
 
-export async function getServerSideProps(){
+// export async function getServerSideProps(){
+//   await MongooseConnect();
+//   const data = await Setting.find({});
+//   // const featuredProductId = '670d55ba4d93901617e08570';
+//   const featuredProductId = data?.[0].featured;
+//   const featuredProduct = await Product.findById(featuredProductId);
+//   const newProducts = await Product.find({},null,{sort: {'_id':-1}, limit:10});
+//   return {
+//     props: {
+//       featuredProduct: JSON.parse(JSON.stringify(featuredProduct)),
+//       newProducts: JSON.parse(JSON.stringify(newProducts))
+//     },
+//   }
+// }
+
+//optimisation attempt
+export async function getStaticProps() {
   await MongooseConnect();
   const data = await Setting.find({});
-  // const featuredProductId = '670d55ba4d93901617e08570';
-  const featuredProductId = data?.[0].featured;
+  const featuredProductId = data?.[0]?.featured;
   const featuredProduct = await Product.findById(featuredProductId);
-  const newProducts = await Product.find({},null,{sort: {'_id':-1}, limit:10});
+  const newProducts = await Product.find({}, null, { sort: { '_id': -1 }, limit: 10 });
+
   return {
     props: {
       featuredProduct: JSON.parse(JSON.stringify(featuredProduct)),
-      newProducts: JSON.parse(JSON.stringify(newProducts))
+      newProducts: JSON.parse(JSON.stringify(newProducts)),
     },
-  }
+    revalidate: 60, // Revalidate every 60 seconds
+  };
 }
