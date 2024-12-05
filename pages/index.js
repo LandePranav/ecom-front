@@ -4,10 +4,13 @@ import { Product } from "@/models/Product";
 import MongooseConnect from "@/lib/mongoose";
 import NewProduct from "@/components/NewProduct";
 import { Setting } from "@/models/Settings";
+import { SpeedInsights } from "@vercel/speed-insights/next"
+
 
 export default function Home({featuredProduct,newProducts}) {
   return (
     <div style={{paddingBottom:"20px"}}>
+      <SpeedInsights />
       <Header />
       <Featured product={featuredProduct} />
       <NewProduct products={newProducts} />
