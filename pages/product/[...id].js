@@ -92,13 +92,47 @@ export default function ProductPage({product}) {
     );
 }
 
-export async function getServerSideProps(context){
+//switch to this for instant updates of data.
+// export async function getServerSideProps(context){
+//     await MongooseConnect();
+//     const {id} = context.query;
+//     const product = await Product.findById(id) ;
+//     return{
+//         props: {
+//             product:JSON.parse(JSON.stringify(product)),
+//         }
+//     };
+// }
+
+
+// generate static pages
+//using this for instand page loading / rendering 
+export async function getStaticPaths(){
     await MongooseConnect();
-    const {id} = context.query;
-    const product = await Product.findById(id) ;
-    return{
-        props: {
-            product:JSON.parse(JSON.stringify(product)),
+    const products = await Product.find({},null, {sort:{'_id': -1}});
+    const paths = products.map((product) => ({
+        params: {
+            id: [product._id.toString()] //pass product id as route param arr
         }
-    };
+    }));
+    return {
+        paths,
+        fallback: 'blocking', // means if new product page that isnt in static cache, first is build then served
+    }
+  }
+
+  //fetch data for product of static pages.
+//   implies ISR i.e,. icremental site regenration using revalidate
+export async function getStaticProps({params}){
+    const {id} = params;
+    await MongooseConnect();
+    const product = await Product.findById(id);
+    if(!product) return {notFound: true};
+
+    return {
+        props: {
+            product: JSON.parse(JSON.stringify(product)),
+        },
+        revalidate: 30,
+    }
 }

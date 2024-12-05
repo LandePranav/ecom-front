@@ -46,6 +46,6 @@ export async function getStaticProps() {
       featuredProduct: JSON.parse(JSON.stringify(featuredProduct)),
       newProducts: JSON.parse(JSON.stringify(newProducts)),
     },
-    revalidate: 60, // Revalidate every 60 seconds
+    revalidate: 30, // Revalidate every 30 seconds
   };
 }
